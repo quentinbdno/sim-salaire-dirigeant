@@ -1,79 +1,148 @@
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Layout */
+  --container-max: 980px;
+  --container-pad: 1rem;
+  --radius: 12px;
+  --shadow: 0 2px 6px rgba(0, 0, 0, .04);
 
+  /* Couleurs (thème clair) */
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #111827;
+  --primary-contrast: #ffffff;
+
+  /* Police */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Avenir, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    /* ardoise foncé */
+    --surface: #111827;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: #374151;
+    --primary: #f9fafb;
+    --primary-contrast: #111827;
+    --shadow: 0 2px 6px rgba(0, 0, 0, .25);
+  }
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+html {
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Liens neutres par défaut (les composants les stylent) */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* ---------- Gabarit commun aux pages ---------- */
+.container {
+  max-width: var(--container-max);
+  margin: 1.5rem auto;
+  padding: 0 var(--container-pad);
 }
 
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: center;
+  margin: .8rem 0;
+}
+
+/* Cartes / panneaux réutilisables */
 .card {
-  padding: 2em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* ---------- Formulaires (base douce et cohérente) ---------- */
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: .55rem .65rem;
+  width: 100%;
+}
+
+::placeholder {
+  color: var(--muted);
+}
+
+/* Boutons génériques (peu intrusifs) */
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f9f9f9;
+  padding: .55rem .8rem;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+button:hover {
+  background: #f3f4f6;
+}
+
+button.primary {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border-color: var(--primary);
+}
+
+button.ghost {
+  background: transparent;
+}
+
+/* Utilitaires utiles */
+.muted {
+  color: var(--muted);
+}
+
+.center {
   text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Optionnel : sépare un bloc d’un autre */
+.hr {
+  height: 1px;
+  background: var(--border);
+  margin: 1rem 0;
 }
