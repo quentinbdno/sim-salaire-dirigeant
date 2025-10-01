@@ -8,7 +8,7 @@ const engine = new Engine(modeleSocial) // 1 instance partagée
 
 export function usePublicodes() {
   const statut = ref<StatutDirigeant>('assimilé salarié')
-  const brutAnnuel = ref<number>(48000) // €/an
+  const brutAnnuel = ref<number>(40000) // €/an
 
   function setSituation() {
     engine.setSituation({
